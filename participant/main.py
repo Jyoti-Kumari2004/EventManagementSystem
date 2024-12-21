@@ -4,13 +4,11 @@ from models.user import User
 from models.event import Event
 from services.userService import UserService
 from services.eventService import EventService
-
+from services.event_participationService import Event_ParticipationService
 from fastapi.encoders import jsonable_encoder
 from mysql.connector import Error
-
 from repos.userRepo import UserRepo
 from repos.eventRepo import EventRepo
-
 
 app = FastAPI()
 userRepo = UserRepo()
@@ -82,5 +80,5 @@ def deleteEvent(id: int):
 
 @app.post("/event/{eventid}/participant/{participantid}")
 def createEvent_Participation(eventid: int, participationid: int):
-    Event_ParticipationService.createEvent_Participation(eventid, participationid)
+    Event_ParticipationService.create(eventid, participationid)
     return {"message": "created!!"}

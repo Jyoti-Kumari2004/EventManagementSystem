@@ -23,6 +23,15 @@ CREATE TABLE event (
     description TEXT                     -- Description of the event
 );
 
+CREATE TABLE Event_Participation (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    eventid INT NOT NULL,
+    participationid INT NOT NULL,
+    FOREIGN KEY (eventid) REFERENCES Event(id) ON DELETE CASCADE,
+    FOREIGN KEY (participationid) REFERENCES Participant(id) ON DELETE CASCADE
+);
+
+
 -- Insert some sample data into the 'event' table
 INSERT INTO event (name, venue, startDate, endDate, description)
 VALUES 
@@ -40,6 +49,11 @@ INSERT INTO participant (Id, Name, Contact, Email) VALUES
 (4, 'Jyoti', '7404777385', 'jyoti2004@gmail.com'),
 (5, 'Navin', '7000000000', 'army2000@gmail.com'),
 (6, 'Bhumika', '7777777777', 'didi2002@gmail.com');
+
+INSERT INTO Event_Participation (eventid, participationid) VALUES 
+(1, 1),
+(1, 2),
+(2, 3);
 
 -- 5. Display the inserted data
 SELECT * FROM participant;
